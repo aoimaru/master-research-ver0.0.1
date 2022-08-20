@@ -74,6 +74,32 @@
     [
         ["BASH-ASSIGN", "BASH-ASSIGN-LHS", "BASH-VARIABLE:savedAptMark"],
         ["BASH-ASSIGN", "BASH-ASSIGN-RHS", "BASH-DOUBLE-QUOTED", "BASH-DOLLAR-PARENS"]
+    ],
+    [
+        ["SC-APT-GET-UPDATE"]
+    ],
+    [
+        ["SC-APT-GET-INSTALL", "SC-APT-GET-F-YES"],
+        ["SC-APT-GET-INSTALL", "SC-APT-GET-F-NO-INSTALL-RECOMMENDS"],
+        ["SC-APT-GET-INSTALL", "SC-APT-GET-PACKAGES", "SC-APT-GET-PACKAGE:GNUPG"],
+        ["SC-APT-GET-INSTALL", "SC-APT-GET-PACKAGES", "SC-APT-GET-PACKAGE:DIRMNGR"]
+    ],
+    [
+        ["SC-EXPORT", "SC-EXPORT-TARGET", "BASH-ASSIGN", "BASH-ASSIGN-LHS", "BASH-VARIABLE:GNUPGHOME"],
+        ["SC-EXPORT", "SC-EXPORT-TARGET", "BASH-ASSIGN", "BASH-ASSIGN-RHS", "BASH-DOUBLE-QUOTED","BASH-DOLLAR-PARENS", "SC-MKTEMP", "SC-MKTEMP-F-DIRECTORY"]
+    ],
+    ******
+
+    "phase-1":
+
+    [
+        ["SC-SET", "SC-SET-F-E"],
+        ["SC-SET", "SC-SET-F-U"],
+        ["SC-SET", "SC-SET-F-X"]
+    ],
+    [
+        ["BASH-ASSIGN", "BASH-ASSIGN-LHS", "BASH-VARIABLE:savedAptMark"],
+        ["BASH-ASSIGN", "BASH-ASSIGN-RHS", "BASH-DOUBLE-QUOTED", "BASH-DOLLAR-PARENS"]
         -> phase-2で注目 ※1
     ],
     [
@@ -204,7 +230,7 @@
             "SC-APT-GET-INSTALL",
             "SC-APT-GET-PACKAGES",
             "SC-APT-GET-PACKAGE:DIRMNGR"
-            
+
             ******
         ]
     },
