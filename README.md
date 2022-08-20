@@ -96,7 +96,7 @@
     "phase-2":
 
     "※1": 
-    
+
     "0c1e517ccfa17cd28a2a1e54b6a017b6d7b94f0d-13-1": {
         "document": [
             ["BASH-ASSIGN", "BASH-ASSIGN-LHS", "BASH-VARIABLE:savedAptMark"],
@@ -154,6 +154,58 @@
             "SC-APT-GET-INSTALL",
             "SC-APT-GET-PACKAGES",
             "SC-APT-GET-PACKAGE:DIRMNGR"
+        ]
+    },
+
+    ******
+
+    $ "※2"少し詳しく
+
+    "0c1e517ccfa17cd28a2a1e54b6a017b6d7b94f0d-13-3": {
+        "document": [
+            ["SC-APT-GET-INSTALL", "SC-APT-GET-F-YES"],
+            ["SC-APT-GET-INSTALL", "SC-APT-GET-F-NO-INSTALL-RECOMMENDS"],
+            ["SC-APT-GET-INSTALL", "SC-APT-GET-PACKAGES", "SC-APT-GET-PACKAGE:GNUPG"],
+            ["SC-APT-GET-INSTALL", "SC-APT-GET-PACKAGES", "SC-APT-GET-PACKAGE:DIRMNGR"]
+        ],
+        "training_data": [
+            ******
+
+            "SC-SET",
+            "SC-SET-F-E",
+            "SC-SET",
+            "SC-SET-F-U",
+            "SC-SET",
+            "SC-SET-F-X",
+
+            ******
+
+            "BASH-ASSIGN",
+            "BASH-ASSIGN-LHS",
+            "BASH-VARIABLE:savedAptMark",
+            "BASH-ASSIGN",
+            "BASH-ASSIGN-RHS",
+            "BASH-DOUBLE-QUOTED",
+            "BASH-DOLLAR-PARENS",
+
+            ******
+
+            "SC-APT-GET-UPDATE",
+
+            ******
+
+            "SC-APT-GET-INSTALL",
+            "SC-APT-GET-F-YES",
+            "SC-APT-GET-INSTALL",
+            "SC-APT-GET-F-NO-INSTALL-RECOMMENDS",
+            "SC-APT-GET-INSTALL",
+            "SC-APT-GET-PACKAGES",
+            "SC-APT-GET-PACKAGE:GNUPG",
+            "SC-APT-GET-INSTALL",
+            "SC-APT-GET-PACKAGES",
+            "SC-APT-GET-PACKAGE:DIRMNGR"
+            
+            ******
         ]
     },
 
