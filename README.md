@@ -254,7 +254,7 @@ grepなどでも, 似たような記述を検出可能できるが, 順番など
 ```
 
 
-### Dockerfile サンプル
+### Dockerfile サンプル-v1
 ```bash
 # some of ruby's build scripts are written in ruby
 #   we purge system ruby later to make sure our final image uses what we just built
@@ -280,6 +280,54 @@ RUN set -ex \
 	&& cd /usr/src/ruby \
 	\
 
+```
 
-
+## Dockerfile サンプル-v2
+```bash
+RUN set -x \
+	\
+	&& savedAptMark="$(apt-mark showmanual)" \
+	&& apt-get update && apt-get install -y --no-install-recommends \
+		ca-certificates \
+		gcc \
+		libc6-dev \
+		liblua5.3-dev \
+		libpcre2-dev \
+		libssl-dev \
+		make \
+		wget \
+		zlib1g-dev \
+	&& rm -rf /var/lib/apt/lists/* \
+	\
+	&& wget -O haproxy.tar.gz "$HAPROXY_URL" \
+	&& echo "$HAPROXY_SHA256 *haproxy.tar.gz" | sha256sum -c \
+	&& mkdir -p /usr/src/haproxy \
+	&& tar -xzf haproxy.tar.gz -C /usr/src/haproxy --strip-components=1 \
+	&& rm haproxy.tar.gz \
+	\
+	&& makeOpts=' \
+		TARGET=linux2628 \
+		USE_LUA=1 LUA_INC=/usr/include/lua5.3 \
+		USE_GETADDRINFO=1 \
+		USE_OPENSSL=1 \
+		USE_PCRE2=1 USE_PCRE2_JIT=1 \
+		USE_ZLIB=1 \
+	' \
+	&& make -C /usr/src/haproxy -j "$(nproc)" all $makeOpts \
+	&& make -C /usr/src/haproxy install-bin $makeOpts \
+	\
+	&& mkdir -p /usr/local/etc/haproxy \
+	&& cp -R /usr/src/haproxy/examples/errorfiles /usr/local/etc/haproxy/errors \
+	&& rm -rf /usr/src/haproxy \
+	\
+	&& apt-mark auto '.*' > /dev/null \
+	&& { [ -z "$savedAptMark" ] || apt-mark manual $savedAptMark; } \
+	&& find /usr/local -type f -executable -exec ldd '{}' ';' \
+		| awk '/=>/ { print $(NF-1) }' \
+		| sort -u \
+		| xargs -r dpkg-query --search \
+		| cut -d: -f1 \
+		| sort -u \
+		| xargs -r apt-mark manual \
+	&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
 ```
