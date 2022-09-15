@@ -19,6 +19,8 @@
 ["cmd_vec_N-2", "cmd_vec_N-1", " cmd_vec_N "] --> ["RUN_vec_N"]
 
 
+[" cmd_vec_1 ", " cmd_vec_2 ", " cmd_vec_3 "] --> ["RUN_vec_1"]
+[" cmd_vec_2 ", " cmd_vec_3 ", " cmd_vec_4 "] --> ["RUN_vec_1"]
 
 
 
