@@ -1,5 +1,44 @@
 ```bash
 
+
+RUN set -ex \
+	&& buildDeps=' \
+		bison \
+		dpkg-dev \
+		libgdbm-dev \
+		ruby \
+	' \
+	&& apt-get update \
+	&& apt-get install -y --no-install-recommends $buildDeps \
+	&& rm -rf /var/lib/apt/lists/* \
+	\
+	&& wget -O ruby.tar.xz "https://cache.ruby-lang.org/pub/ruby/${RUBY_MAJOR%-rc}/ruby-$RUBY_VERSION.tar.xz" \
+	&& echo "$RUBY_DOWNLOAD_SHA256 *ruby.tar.xz" | sha256sum -c - \
+	&& mkdir -p /usr/src/ruby \
+	&& tar -xJf ruby.tar.xz -C /usr/src/ruby --strip-components=1 \
+	&& rm ruby.tar.xz \
+	&& cd /usr/src/ruby \
+
+
+RUN set -ex \
+	&& buildDeps=' \
+		bison \
+		dpkg-dev \
+		libgdbm-dev \
+		ruby \
+	' \
+	&& apt-get update \
+	&& apt-get install -y --no-install-recommends $buildDeps \
+	&& rm -rf /var/lib/apt/lists/* \
+	\
+	&& wget -O ruby.tar.xz "https://cache.ruby-lang.org/pub/ruby/${RUBY_MAJOR%-rc}/ruby-$RUBY_VERSION.tar.xz" \
+	&& echo "$RUBY_DOWNLOAD_SHA256 *ruby.tar.xz" | sha256sum -c - \
+	&& mkdir -p /usr/src/ruby \
+	&& tar -xJf ruby.tar.xz -C /usr/src/ruby --strip-components=1 \
+	&& rm ruby.tar.xz \
+	&& cd /usr/src/ruby \
+	
+	
 [" command_1 ", " command_2 ", " command_3 "] --> ["RUN_N"]
 [" command_2 ", " command_3 ", " command_4 "] --> ["RUN_N"]
 
