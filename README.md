@@ -1,3 +1,27 @@
+```bash
+
+[" command_1 ", " command_2 ", " command_3 "] --> ["RUN_N"]
+[" command_2 ", " command_3 ", " command_4 "] --> ["RUN_N"]
+
+
+["command_N-2", "command_N-1", " command_N "] --> ["RUN_N"]
+
+
+
+
+
+
+
+[" cmd_vec_1 ", " cmd_vec_2 ", " cmd_vec_3 "] --> ["RUN_vec_N"]
+[" cmd_vec_2 ", " cmd_vec_3 ", " cmd_vec_4 "] --> ["RUN_vec_N"]
+
+
+["cmd_vec_N-2", "cmd_vec_N-1", " cmd_vec_N "] --> ["RUN_vec_N"]
+
+
+```
+
+
 ## 基本的なアイディア
 ### Dockerfileを記述する際のコード補完機能は極めて弱い(ex. Dockerfile内で記載されている単語のみしか提案されない)
 ### 似ている記述の提案 -> grepに勝るものの提案
